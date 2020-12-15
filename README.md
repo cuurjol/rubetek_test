@@ -1,24 +1,42 @@
-# README
+# Тестовое задание для компании [Rubetek](https://rubetek.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Разработать web приложение для сбора показаний счетчиков воды.
+Приложением пользуются два типа пользователей: сотрудники управляющей компании и жители района.
+Для жильцов необходимо сделать интерфейс отправки показаний счетчика воды.
+Для сотрудников УК необходимо подготовить отчёты:
 
-Things you may want to cover:
+* Последние показания по счетчикам (Имя жильца, Адрес, Показание, Дата)
+* Жильцы которые не ввели показания счетчика в этом месяце
 
-* Ruby version
+Код выложить в публичный доступ для проверки.
+Технологи рекоммендованые к использованию, но необязательны в рамках данного задания:
+Ruby, Ruby on Rails, PostgreSQL, Bootstrap, Vue.js, Devise, Pundit
 
-* System dependencies
+# Запуск приложения
 
-* Configuration
+Для того, чтобы запустить приложение, выполните следующие команды у себя в окне терминала:
 
-* Database creation
+* Склонируйте репозиторий с GitHub и перейдите в папку приложения:
+```
+git clone https://github.com/cuurjol/rubetek_test.git
+cd rubetek_test
+```
 
-* Database initialization
+* Установите необходимые гемы приложения, указанные в файле `Gemfile`:
+```
+bundle install
+```
 
-* How to run the test suite
+* Создайте базу данных, запустите миграции для базы данных и файл `seeds.rb` для создания записей в базу данных:
+```
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
+Приложение использует СУБД `Postgresql`. При необходимости создайте нового пользователя в СУБД для этого приложения
+или измените СУБД на другую, изменив настройки файла `config/database.yml`.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Запустите приложение:
+```
+bundle exec rails server
+```
