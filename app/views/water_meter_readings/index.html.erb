@@ -1,0 +1,55 @@
+<div class="page-header">
+  <h1><%=t('.title') %></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <% unless current_user.dweller? %>
+        <th><%= t('.table.full_name') %></th>
+        <th><%= t('.table.address') %></th>
+      <% end %>
+      <th><%= t('.table.hot') %></th>
+      <th><%= t('.table.cold') %></th>
+      <th><%= t('.table.created_at') %></th>
+      <th><%= t('.table.updated_at') %></th>
+      <% unless current_user.employee? %>
+        <th><%= t('.table.actions') %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @water_meter_readings.each.with_index(1) do |water_meter_reading, i| %>
+      <tr>
+        <td><%= i %></td>
+        <% unless current_user.dweller? %>
+          <td><%= water_meter_reading.user.full_name %></td>
+          <td><%= water_meter_reading.user.address %></td>
+        <% end %>
+        <td><%= water_meter_reading.hot %></td>
+        <td><%= water_meter_reading.cold %></td>
+        <td><%= l(water_meter_reading.created_at, format: :long) %></td>
+        <td><%= l(water_meter_reading.updated_at, format: :long) %></td>
+        <% unless current_user.employee? %>
+          <td>
+            <%= link_to t('.buttons.edit'),
+                        edit_water_meter_reading_path(water_meter_reading), class: 'btn btn-default btn-xs' %>
+            <%= link_to t('.buttons.destroy'),
+                        water_meter_reading_path(water_meter_reading),
+                        method: :delete,
+                        data: { confirm: t('.confirm_destruction') },
+                        class: 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user.dweller? %>
+  <%= link_to t('.buttons.new'), new_water_meter_reading_path, class: 'btn btn-primary' %>
+  <% else %>
+  <%= link_to t('.buttons.last_month_report'), last_month_report_water_meter_readings_path(format: :xlsx), class: 'btn btn-primary' %>
+  <%= link_to t('.buttons.debtors_report'), debtors_report_users_path(format: :xlsx), class: 'btn btn-primary' %>
+<% end %>

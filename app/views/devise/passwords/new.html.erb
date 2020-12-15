@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-6">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: 'panel panel-default', method: :post }) do |f| %>
+      <div class="panel-heading">
+        <h1 class="panel-title"><strong><%= t('devise.passwords.new.title') %></strong></h1>
+      </div>
+
+      <div class="panel-body">
+        <p><%= t('devise.passwords.new.tip') %></p>
+        <div class="form-group <%= "has-error" if f.errors_on?(:email) %>">
+          <%= f.label :email %>
+          <%= f.text_field :email, autofocus: true, autocomplete: "email", placeholder: t('devise.passwords.new.placeholders.email'), class: "form-control" %>
+          <%= f.error_span(:email) %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit t('devise.passwords.new.buttons.continue'), class: "btn btn-success" %>
+        </div>
+      </div>
+
+      <div class="panel-footer"><%= render "devise/shared/links" %></div>
+    <% end %>
+  </div>
+</div>

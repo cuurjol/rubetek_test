@@ -1,0 +1,81 @@
+<div class="page-header">
+  <h1><%=t('.users.title') %></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th><%= t('.users.table.full_name') %></th>
+    <th><%= t('.users.table.email') %></th>
+    <th><%= t('.users.table.role') %></th>
+    <th><%= t('.users.table.created_at') %></th>
+    <th><%= t('.users.table.updated_at') %></th>
+    <th><%= t('.users.table.actions') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each.with_index(1) do |user, i| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= user.full_name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.role %></td>
+      <td><%= l(user.created_at, format: :long) %></td>
+      <td><%= l(user.updated_at, format: :long) %></td>
+      <td>
+        <%= link_to t('.users.buttons.show'), user_path(user), class: 'btn btn-default btn-xs' %>
+        <%= link_to t('.users.buttons.edit'), edit_user_path(user), class: 'btn btn-default btn-xs' %>
+        <%= link_to t('.users.buttons.destroy'),
+                    user_path(user),
+                    method: :delete,
+                    data: { confirm: t('.users.confirm_destruction') },
+                    class: 'btn btn-xs btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.users.buttons.new'), new_user_path, class: 'btn btn-primary' %>
+
+<div class="page-header">
+  <h1><%=t('.water_meter_readings.title') %></h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th><%= t('.water_meter_readings.table.full_name') %></th>
+    <th><%= t('.water_meter_readings.table.address') %></th>
+    <th><%= t('.water_meter_readings.table.hot') %></th>
+    <th><%= t('.water_meter_readings.table.cold') %></th>
+    <th><%= t('.water_meter_readings.table.created_at') %></th>
+    <th><%= t('.water_meter_readings.table.updated_at') %></th>
+    <th><%= t('.water_meter_readings.table.actions') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @water_meter_readings.each.with_index(1) do |water_meter_reading, i| %>
+    <tr>
+      <td><%= i %></td>
+      <td><%= water_meter_reading.user.full_name %></td>
+      <td><%= water_meter_reading.user.address %></td>
+      <td><%= water_meter_reading.hot %></td>
+      <td><%= water_meter_reading.cold %></td>
+      <td><%= l(water_meter_reading.created_at, format: :long) %></td>
+      <td><%= l(water_meter_reading.updated_at, format: :long) %></td>
+      <td>
+        <%= link_to t('.water_meter_readings.buttons.edit'),
+                    edit_water_meter_reading_path(water_meter_reading), class: 'btn btn-default btn-xs' %>
+        <%= link_to t('.water_meter_readings.buttons.destroy'),
+                    water_meter_reading_path(water_meter_reading),
+                    method: :delete,
+                    data: { confirm: t('.water_meter_readings.confirm_destruction') },
+                    class: 'btn btn-xs btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

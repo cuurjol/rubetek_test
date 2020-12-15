@@ -1,0 +1,78 @@
+<%= form_for @user, url: form_url_path(@user), html: { multipart: true, class: 'panel panel-default' } do |f| %>
+  <div class="panel-heading">
+    <h1 class="panel-title"><strong><%= form_title(@user) %></strong></h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="form-group <%= "has-error" if f.errors_on?(:last_name) %>">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+      <%= f.error_span(:last_name) %>
+    </div>
+
+    <div class="form-group <%= "has-error" if f.errors_on?(:first_name) %>">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+      <%= f.error_span(:first_name) %>
+    </div>
+
+    <div class="form-group <%= "has-error" if f.errors_on?(:middle_name) %>">
+      <%= f.label :middle_name %>
+      <%= f.text_field :middle_name, class: 'form-control' %>
+      <%= f.error_span(:middle_name) %>
+    </div>
+
+    <% if current_user.admin? && current_user != @user %>
+      <div class="form-group">
+        <%= f.radio_button :role, 'dweller' %>
+        <%= f.label :role, 'Dweller' %>
+
+        <br/>
+
+        <%= f.radio_button :role, 'employee' %>
+        <%= f.label :role, 'Employee' %>
+      </div>
+    <% end %>
+
+    <div class="form-group <%= "has-error" if f.errors_on?(:address) %> <%= "div-hidden" unless @user.dweller? %>">
+      <%= f.label :address %>
+      <%= f.text_area :address, class: 'form-control' %>
+      <%= f.error_span(:address) %>
+    </div>
+
+    <div class="form-group <%= "has-error" if f.errors_on?(:email) %>">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+      <%= f.error_span(:email) %>
+    </div>
+
+    <% if current_user.admin? && @user.new_record? %>
+      <div class="form-group <%= "has-error" if f.errors_on?(:password) %>">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+        <%= f.error_span(:password) %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit t('.buttons.save'), class: 'btn btn-success' %>
+      <% if current_user == @user %>
+        <%= t('.or_label') %>
+        <%= link_to t('.links.change_password'), edit_user_registration_path, class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <% if @user.new_record? %>
+      <%= link_to t('.links.root_back'), root_path, class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to t('.links.profile_page_back'), user_path(@user), class: 'btn btn-primary' %>
+    <% end %>
+
+    <% if current_user.admin? && current_user != @user && !@user.new_record? %>
+      <%= link_to t('.links.destroy_page'), user_path(@user),
+                  data: { confirm: t('.confirm_destruction') }, method: :delete, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+<% end %>

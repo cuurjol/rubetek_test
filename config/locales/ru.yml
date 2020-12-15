@@ -1,0 +1,206 @@
+ru:
+  pundit:
+    user_policy:
+      show?: 'Вы не можете просматривать этот профиль пользователя!'
+      create?: 'Вы не можете создавать пользователей!'
+      update?: 'Вы не можете обновлять этот профиль пользователя!'
+      destroy?: 'Вы не можете удалить этот профиль пользователя!'
+      debtors_report?: 'Вы не можете выгрузить этот "debtors_report.xlsx" отчёт!'
+    water_meter_reading_policy:
+      index?: 'Вы не можете просмотреть этот список показаний счётчика воды!'
+      create?: 'Вы не можете создавать показания счётчиков воды!'
+      update?: 'Вы не можете обновлять показания счётчиков воды!'
+      destroy?: 'Вы не можете удалить показания счётчиков воды!'
+      last_month_report?: 'Вы не можете выгрузить этот "last_month_report.xlsx" отчёт!'
+
+  activerecord:
+    models:
+      user: 'Пользователь'
+      water_meter_readings: 'Показания счётчика воды'
+
+    attributes:
+      user:
+        email: 'Email'
+        last_name: 'Фамилия'
+        first_name: 'Имя'
+        middle_name: 'Отчество'
+        address: 'Адрес'
+        role: 'Роль'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+      water_meter_reading:
+        hot: 'Горячая'
+        cold: 'Холодная'
+        created_at: 'Создано в'
+        updated_at: 'Обновлено в'
+
+  controllers:
+    users:
+      created: 'Пользователь был успешно создан.'
+      updated: 'Пользователь был успешно обновлён.'
+      destroyed: 'Пользователь был успешно удалён.'
+    water_meter_readings:
+      created: 'Показания счетчика воды были успешно созданы.'
+      updated: 'Показания счетчика воды были успешно обновлены.'
+      destroyed: 'Показания счетчика воды были успешно удалены.'
+    admin:
+      verify_is_admin: 'Доступ запрещён!'
+
+  layouts:
+    user_menu:
+      sign_out: 'Выйти'
+
+  devise:
+    passwords:
+      edit:
+        title: 'Сброс пароля'
+        placeholders:
+          new_password: 'Ваш новый пароль'
+          new_password_confirmation: 'Повторите новый пароль'
+        buttons:
+          change: 'Восстановить пароль'
+      new:
+        title: 'Забыли пароль?'
+        tip: 'Если вы забыли пароль, введите свой Email, указанный при регистрации. Вам будет выслана инструкция по сбросу пароля.'
+        placeholders:
+          email: 'Ваш email'
+        buttons:
+          continue: 'Отправить инструкцию'
+    registrations:
+      edit:
+        title: 'Смена пароля пользователя'
+        placeholders:
+          new_password: 'Ваш новый пароль'
+          new_password_confirmation: 'Повторите новый пароль'
+          current_password: 'Ваш текущий пароль'
+        tip: 'Введите текущий пароль для подтверждения смены пароля'
+        buttons:
+          change: 'Изменить пароль'
+        links:
+          profile: 'Вернуться на страницу редактирования профиля'
+      new:
+        title: 'Регистрация нового пользователя'
+        placeholders:
+          email: 'Ваш email'
+          password: 'Ваш пароль'
+          password_confirmation: 'Повторите пароль'
+        buttons:
+          sign_up: 'Зарегистрироваться'
+    sessions:
+      new:
+        title: 'Авторизация пользователя'
+        placeholders:
+          email: 'Ваш email'
+          password: 'Ваш пароль'
+        buttons:
+          sign_in: 'Войти'
+    shared:
+      links:
+        sign_up: 'Зарегистрироваться'
+        sign_in: 'Войти'
+        forgot_password: 'Забыли пароль?'
+
+  users:
+    show:
+      title: 'Сведения о пользователе'
+      buttons:
+        edit: 'Редактировать профиль'
+        cancel: 'Вернуться на главную страницу'
+    new:
+      title: 'Новый пользователь'
+    edit:
+      title: 'Редактировать пользователя'
+    form:
+      links:
+        profile_page_back: 'Вернуться на страницу профиля'
+        root_back: 'Вернуться на главную страницу'
+        change_password: 'Сменить пароль'
+        destroy_page: 'Удалить страницу'
+      confirm_destruction: 'Вы уверены, что хотите удалить страницу пользователя?'
+      or_label: ' или '
+      buttons:
+        save: 'Сохранить'
+    debtors_report:
+      worksheet_name: 'Должники'
+      table_title: 'Таблица должников'
+      table_columns:
+        full_name: 'ФИО'
+        address: 'Адрес'
+
+  water_meter_readings:
+    index:
+      title: 'Показания счётчиков воды'
+      confirm_destruction: 'Вы уверены, что хотите удалить показания счётчика воды?'
+      table:
+        full_name: 'ФИО'
+        address: 'Адрес'
+        hot: 'Горячая'
+        cold: 'Холодная'
+        created_at: 'Создано в'
+        updated_at: 'Обновлено в'
+        actions: 'Действия'
+      buttons:
+        new: 'Новые показания счётчика воды'
+        last_month_report: 'Выгрузить "last_month_report" отчёт'
+        debtors_report: 'Выгрузить "debtors_report" отчёт'
+        edit: 'Редактировать'
+        destroy: 'Удалить'
+    new:
+      title: 'Новые показания счётчика воды'
+    edit:
+      title: 'Редактирование показаний счётчика воды'
+    form:
+      buttons:
+        save: 'Сохранить'
+      links:
+        root_back: 'Вернуться на главную страницу'
+    last_month_report:
+      worksheet_name: 'Показания счётчиков воды'
+      table_title: 'Таблица показаний счётчиков воды'
+      table_columns:
+        full_name: 'ФИО'
+        address: 'Адрес'
+        hot: 'Горячая'
+        cold: 'Холодная'
+        date: 'Дата'
+  admin:
+    index:
+      water_meter_readings:
+        title: 'Показания счётчиков воды'
+        confirm_destruction: 'Вы уверены, что хотите удалить показания счётчика воды?'
+        table:
+          full_name: 'ФИО'
+          address: 'Адрес'
+          hot: 'Горячая'
+          cold: 'Холодная'
+          created_at: 'Создано в'
+          updated_at: 'Обновлено в'
+          actions: 'Действия'
+        buttons:
+          edit: 'Редактировать'
+          destroy: 'Удалить'
+      users:
+        title: 'Пользователи'
+        confirm_destruction: 'Вы уверены, что хотите удалить пользователя?'
+        table:
+          full_name: 'ФИО'
+          email: 'Email'
+          role: 'Роль'
+          created_at: 'Создано в'
+          updated_at: 'Обновлено в'
+          actions: 'Действия'
+        buttons:
+          new: 'Новый пользователь'
+          show: 'Показать'
+          edit: 'Редактировать'
+          destroy: 'Удалить'
+
+  errors_count:
+    one: 'В вашей форме %{count} ошибка'
+    few: 'В вашей форме %{count} ошибки'
+    many: 'В вашей форме %{count} ошибок'
+
+  characters_count:
+    one: 'Минимум %{count} символ'
+    few: 'Минимум %{count} символа'
+    many: 'Минимум %{count} символов'

@@ -1,0 +1,37 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 18)
+  heading = style.add_style(b: true, sz: 14, alignment: { horizontal: :center }, bg_color: '343A40', fg_color: 'FF',
+                            border: { style: :thin, color: 'dee2e6', edges: %i[left right top bottom] })
+  even_cell = style.add_style(sz: 14, alignment: { horizontal: :center }, bg_color: 'f2f2f2', fg_color: '212529',
+                              border: { style: :thin, color: 'dee2e6', edges: %i[left right top bottom] })
+  odd_cell = style.add_style(sz: 14, alignment: { horizontal: :center }, bg_color: 'FF', fg_color: '212529',
+                             border: { style: :thin, color: 'dee2e6', edges: %i[left right top bottom] })
+
+  wb.add_worksheet(name: t('.worksheet_name')) do |sheet|
+    table_header_columns = [t('.table_columns.full_name'), t('.table_columns.address')]
+    col_widths = [nil, [30] * table_header_columns.size].flatten
+    sheet.column_widths(*col_widths)
+
+    # Add a title row
+    sheet.add_row([nil, t('.table_title')], style: project_heading)
+
+    # Add a blank row
+    sheet.add_row([])
+
+    # Create the header row
+    sheet.add_row([nil] + table_header_columns, style: [nil, [heading] * table_header_columns.size].flatten)
+
+    # Create entries for each user
+    @users.each_with_index do |user, index|
+      full_name = user.full_name
+      address = user.address
+
+      row = [nil, full_name, address]
+
+      sheet.add_row(row, style: [nil, [even_cell] * (row.size - 1)].flatten) if index.even?
+      sheet.add_row(row, style: [nil, [odd_cell] * (row.size - 1)].flatten) if index.odd?
+    end
+  end
+end

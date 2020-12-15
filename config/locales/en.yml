@@ -1,33 +1,205 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  pundit:
+    user_policy:
+      show?: 'You cannot view this user profile!'
+      create?: 'You cannot create users!'
+      update?: 'You cannot update this user profile!'
+      destroy?: 'You cannot destroy this user profile!'
+      debtors_report?: 'You cannot upload this "debtors_report.xlsx" report!'
+    water_meter_reading_policy:
+      index?: 'You cannot view this list of water meter readings!'
+      create?: 'You cannot create water meter readings!'
+      update?: 'You cannot update this water meter reading!'
+      destroy?: 'You cannot destroy this water meter reading!'
+      last_month_report?: 'You cannot upload this "last_month_report.xlsx" report!'
+
+  activerecord:
+    models:
+      user: 'User'
+      water_meter_readings: 'Water Meter Readings'
+
+    attributes:
+      user:
+        email: 'Email'
+        last_name: 'Last name'
+        first_name: 'First name'
+        middle_name: 'Middle name'
+        address: 'Address'
+        role: 'Role'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+      water_meter_readings:
+        hot: 'Hot'
+        cold: 'Cold'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+
+  controllers:
+    users:
+      created: 'User was successfully created.'
+      updated: 'User was successfully updated.'
+      destroyed: 'User was successfully destroyed.'
+    water_meter_readings:
+      created: 'Water meter reading was successfully created.'
+      updated: 'Water meter reading was successfully updated.'
+      destroyed: 'Water meter reading was successfully destroyed.'
+    admin:
+      verify_is_admin: 'Access deny!'
+
+  layouts:
+    user_menu:
+      sign_out: 'Sign out'
+
+  devise:
+    passwords:
+      edit:
+        title: 'Password reset'
+        placeholders:
+          new_password: 'Your new password'
+          new_password_confirmation: 'Repeat new password'
+        buttons:
+          change: 'Restore password'
+      new:
+        title: 'Forgot your password?'
+        tip: 'If you have forgotten your password, enter your Email address provided during registration. You will be sent a password reset instruction.'
+        placeholders:
+          email: 'Your email'
+        buttons:
+          continue: 'Send instruction'
+    registrations:
+      edit:
+        title: 'Change your password'
+        placeholders:
+          new_password: 'Your new password'
+          new_password_confirmation: 'Repeat new password'
+          current_password: 'Your current password'
+        tip: 'Enter current password to confirm password change'
+        buttons:
+          change: 'Change my password'
+        links:
+          profile: 'Back to profile edit page'
+      new:
+        title: 'New user registration'
+        placeholders:
+          email: 'Your email'
+          password: 'Your password'
+          password_confirmation: 'Repeat password'
+        buttons:
+          sign_up: 'Sign up'
+    sessions:
+      new:
+        title: 'User authorization'
+        placeholders:
+          email: 'Your email'
+          password: 'Your password'
+        buttons:
+          sign_in: 'Sign in'
+    shared:
+      links:
+        sign_up: 'Sign up'
+        sign_in: 'Sign in'
+        forgot_password: 'Forgot your password?'
+
+  users:
+    show:
+      title: 'User details'
+      buttons:
+        edit: 'Edit profile'
+        cancel: 'Back to main page'
+    new:
+      title: 'New user'
+    edit:
+      title: 'Editing user'
+    form:
+      links:
+        profile_page_back: 'Back to profile page'
+        root_back: 'Back to main page'
+        change_password: 'Change password'
+        destroy_page: 'Delete page'
+      confirm_destruction: 'Are you sure you want to destroy the user page?'
+      or_label: ' or '
+      buttons:
+        save: 'Save'
+    debtors_report:
+      worksheet_name: 'Debtors'
+      table_title: 'Table of debtors'
+      table_columns:
+        full_name: 'Full name'
+        address: 'Address'
+
+  water_meter_readings:
+    index:
+      title: 'Water Meter Readings'
+      confirm_destruction: 'Are you sure you want to destroy the water meter reading?'
+      table:
+        full_name: 'Full name'
+        address: 'Address'
+        hot: 'Hot'
+        cold: 'Cold'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+        actions: 'Actions'
+      buttons:
+        new: 'New water meter reading'
+        last_month_report: 'Upload "last_month_report" report'
+        debtors_report: 'Upload "debtors_report" report'
+        edit: 'Edit'
+        destroy: 'Destroy'
+    new:
+      title: 'New water meter reading'
+    edit:
+      title: 'Editing water meter reading'
+    form:
+      buttons:
+        save: 'Save'
+      links:
+        root_back: 'Back to main page'
+    last_month_report:
+      worksheet_name: 'Water meter readings'
+      table_title: 'Table of water meter readings'
+      table_columns:
+        full_name: 'Full name'
+        address: 'Address'
+        hot: 'Hot'
+        cold: 'Cold'
+        date: 'Date'
+  admin:
+    index:
+      water_meter_readings:
+        title: 'Water Meter Readings'
+        confirm_destruction: 'Are you sure you want to destroy the water meter reading?'
+        table:
+          full_name: 'Full name'
+          address: 'Address'
+          hot: 'Hot'
+          cold: 'Cold'
+          created_at: 'Created at'
+          updated_at: 'Updated at'
+          actions: 'Actions'
+        buttons:
+          edit: 'Edit'
+          destroy: 'Destroy'
+      users:
+        title: 'Users'
+        confirm_destruction: 'Are you sure you want to destroy the user?'
+        table:
+          full_name: 'Full name'
+          email: 'Email'
+          role: 'Role'
+          created_at: 'Created at'
+          updated_at: 'Updated at'
+          actions: 'Actions'
+        buttons:
+          new: 'New user'
+          show: 'Show'
+          edit: 'Edit'
+          destroy: 'Destroy'
+
+
+  errors_count:
+    one: 'There is %{count} error in your form'
+    other: 'There are %{count} errors in your from'
+
+  characters_count:
+    one: '%{count} character minimum'
+    other: '%{count} characters minimum'
